@@ -21,17 +21,30 @@ function createNewTable() {
     let caption = document.createElement('caption');
     newTable.appendChild(caption);
     caption.textContent = prompt('Enter name');
-    for (let i = 1; i < 4; i++) {
+
+    for (let i = 0; i < 3; i++) {
         let row = document.createElement('tr');
-        for (let j = 1; j < 4; j++) {
+        for (let j = 0; j < 3; j++) {
             let cell = document.createElement('td');
-            let cellText = document.createTextNode('Row ' + i + ', Cell ' + j);
+
+            let cellName = ["Animal", "Place", "Flower", "Character", "Season", "Hobby", "Color", "Rock", "Food"];
+            let cellText;
+            if(i === 0) {
+                cellText = document.createTextNode(cellName[j]);
+            } else if (i === 1) {
+               cellText = document.createTextNode(cellName[3+j]);
+            } else if (i === 2) {
+                cellText = document.createTextNode(cellName[6+j]);
+            }
             cell.appendChild(cellText);
             row.appendChild(cell);
-            cell.className = 'cell img-cell';
+            if(cell.textContent === "Color"){
+                cell.className = 'cell color-cell'
+            } else {
+                cell.className = 'cell img-cell';
+            }
         }
         newTable.appendChild(row);
-
     }
     portraitTableBox.appendChild(newTable);
 }
@@ -57,7 +70,7 @@ createTableBtn.addEventListener('click', () => {
 
 
 function deleteSpanText() {
-    changeColorCell.textContent = null;
+    colorCell.textContent = null;
 }
 
 function addColorInput() {

@@ -4,36 +4,39 @@ h1 {
 }
 
 .createTableBtn {
-    width: 100px;
-    height: 70px;
+    width: 250px;
+    height: 50px;
     padding: 10px;
     margin: 20px;
     font-size: 15px;
-    border-radius: 10%;
-    border: none;
+    border-radius: 5%;
+    /*border: none;*/
     background-color: #9d1f1a;
     color: #e2e3e3;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
     cursor: pointer;
 }
 
-.saveBtn{
-    margin-left: 20px;
+.button-box{
+    display: flex;
+    justify-content: flex-end;
 }
-.saveBtn, .shareBtn {
+.button{
+    background-color: antiquewhite;
+    margin: 3px;
     width: 60px;
     height: 30px;
     padding: 3px;
     border-radius: 10%;
     border: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
-
-/*.shareBtn {*/
-/*    width: 80px;*/
-/*    height: 20px;*/
-/*}*/
+.button--hover{
+    background-color: green;
+}
 
 table {
     margin: 20px;
