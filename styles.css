@@ -1,6 +1,11 @@
-h1 {
-    font-size: 45px;
-    color: darkgray;
+main {
+    margin: 10px;
+}
+
+header {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .createTableBtn {
@@ -15,26 +20,29 @@ h1 {
     color: #e2e3e3;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
     cursor: pointer;
+
+}
+
+.table-box{
+    display: flex;
+    justify-content: center;
 }
 
 .button-box{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
+
 .button{
-    background-color: antiquewhite;
     margin: 3px;
     width: 60px;
     height: 30px;
     padding: 3px;
     border-radius: 10%;
     border: none;
-    /*display: flex;*/
     justify-content: center;
     align-items: center;
     cursor: pointer;
-}
-.button--hover{
     background-color: green;
 }
 

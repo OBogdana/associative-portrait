@@ -30,8 +30,9 @@ function createNewTable() {
 
             if (cell.textContent === "Color") {
                 cell.className = 'cell color-cell';
-                cell.id = 'color-cell';
-                cellText.id = 'span-color';
+                // cell.id = 'color-cell';
+                // cellText.id = 'span-color';
+                cellText.className = 'spanColor';
             } else {
                 cell.className = 'cell img-cell';
             }
@@ -69,17 +70,23 @@ function deleteSpanText(cell) {
 function addColorInput(cell) {
     let color = document.createElement('input');
     cell.appendChild(color);
-    color.id = 'input-color';
+    // color.id = 'input-color';
     color.className = 'inputColor';
     color.type = 'color';
 }
 
 function addListenerToColorCell() {
-    let fillColorCell = document.getElementById("color-cell");
+    let fillColorCell = document.getElementsByClassName("color-cell");
 
     fillColorCell.addEventListener('click', () => {
-        const spanText = document.getElementById('span-color');
-        const inputColor = document.getElementById('input-color');
+        const spanText = document.getElementsByClassName('spanColor');
+
+        for (let el of spanText) {
+            el.addEventListener('click', spanText(el));
+        }
+
+        // const inputColor = document.getElementById('input-color');
+        const inputColor = document.getElementsByClassName('inputColor');
 
         if (spanText) {
             deleteSpanText(fillColorCell);
