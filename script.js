@@ -1,5 +1,5 @@
 const createTableBtn = document.getElementById('createTableBtn');
-const saveTableBtn = document.querySelector('.saveBtn');
+// const saveTableBtn = document.querySelector('.saveBtn');
 const portraitTableBox = document.getElementById('portraitTableBox');
 
 
@@ -14,24 +14,23 @@ function createNewTable() {
 
         for (let j = 0; j < 3; j++) {
             let cell = document.createElement('td');
-            let cellName = ["Animal", "Place", "Flower", "Character", "Season", "Hobby", "Color", "Rock", "Food"];
-            let cellText = document.createElement('span');
+            let cellNames = ["Animal", "Place", "Flower", "Character", "Season", "Hobby", "Color", "Rock", "Food"];
+            let cellSpan = document.createElement('span');
 
             if (i === 0) {
-                cellText.textContent = (cellName[j]);
+                cellSpan.textContent = (cellNames[j]);
             } else if (i === 1) {
-                cellText.textContent = (cellName[3 + j]);
+                cellSpan.textContent = (cellNames[3 + j]);
             } else if (i === 2) {
-                cellText.textContent = (cellName[6 + j]);
+                cellSpan.textContent = (cellNames[6 + j]);
             }
 
-            cell.appendChild(cellText);
             row.appendChild(cell);
+            cell.appendChild(cellSpan);
 
-            if (cell.textContent === "Color") {
+            if (cellSpan.textContent === "Color") {
                 cell.className = 'cell color-cell';
-                cell.id = 'color-cell';
-                cellText.id = 'span-color';
+                cellSpan.className = 'spanColor';
             } else {
                 cell.className = 'cell img-cell';
             }
@@ -39,6 +38,7 @@ function createNewTable() {
         newTable.appendChild(row);
     }
     portraitTableBox.appendChild(newTable);
+    return newTable;
 }
 
 function fillImageInfo(el) {
@@ -51,42 +51,33 @@ function fillImageInfo(el) {
     };
 }
 
-createTableBtn.addEventListener('click', () => {
-    createNewTable();
-    let elementsByClassName = document.getElementsByClassName('img-cell');
+function clearTextAndInsertColorInput(colorCell) {
+    return () => {
+        let spanColorElements = colorCell.getElementsByClassName('spanColor');
+        if (spanColorElements.length !== 0) {
+            colorCell.textContent = null;
+            let colorInputElement = document.createElement('input');
+            colorCell.appendChild(colorInputElement);
+            colorInputElement.className = 'inputColor';
+            colorInputElement.type = 'color';
+        }
+    };
+}
 
-    for (let el of elementsByClassName) {
+createTableBtn.addEventListener('click', () => {
+    let newTable = createNewTable();
+    let chooseImageCell = document.getElementsByClassName('img-cell');
+
+    for (let el of chooseImageCell) {
         el.addEventListener('click', fillImageInfo(el));
     }
 
-    addListenerToColorCell();
+    addLogicToColorCell(newTable);
 });
 
-function deleteSpanText(cell) {
-    cell.textContent = null;
+function addLogicToColorCell(newTable) {
+    let colorCells = newTable.getElementsByClassName('color-cell');
+    for (let colorCell of colorCells) {
+        colorCell.addEventListener('click', clearTextAndInsertColorInput(colorCell));
+    }
 }
-
-function addColorInput(cell) {
-    let color = document.createElement('input');
-    cell.appendChild(color);
-    color.id = 'input-color';
-    color.className = 'inputColor';
-    color.type = 'color';
-}
-
-function addListenerToColorCell() {
-    let fillColorCell = document.getElementById("color-cell");
-
-    fillColorCell.addEventListener('click', () => {
-        const spanText = document.getElementById('span-color');
-        const inputColor = document.getElementById('input-color');
-
-        if (spanText) {
-            deleteSpanText(fillColorCell);
-        }
-        if (!inputColor) {
-            addColorInput(fillColorCell);
-        }
-    });
-}
-
