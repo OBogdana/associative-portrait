@@ -70,13 +70,17 @@ th, td {
 }
 
 .cell {
+    width: 100px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    overflow: hidden;
 }
 
 img {
+    object-fit: cover;
     width: 100px;
     height: 100px;
 }
