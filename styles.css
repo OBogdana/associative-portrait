@@ -14,8 +14,7 @@ header {
     padding: 10px;
     margin: 20px;
     font-size: 15px;
-    border-radius: 5%;
-    /*border: none;*/
+    border-radius: 15px;
     background-color: #9d1f1a;
     color: #e2e3e3;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
