@@ -2,6 +2,41 @@ const createTableBtn = document.getElementById('createTableBtn');
 // const saveTableBtn = document.querySelector('.saveBtn');
 const portraitTableBox = document.getElementById('portraitTableBox');
 
+// let tables = [
+//     {
+//         caption: "",
+//         cells: [
+//             {
+//                 type: "image",
+//                 link: "http://some-link.jpg"
+//             },
+//             {
+//                 type: "color",
+//                 color: "#333"
+//             }
+//         ]
+//     },
+//     {}
+// ]
+let tables = []
+
+tables.push({
+    caption: "some-name",
+    cells: [{
+        position: "position-1-1"
+    }]
+})
+
+// JSON.stringify(tables)
+// JSON.parse("{}")
+
+function loadExistingTables(){
+
+}
+loadExistingTables();
+function saveCell() {
+
+}
 
 function createNewTable() {
     let newTable = document.createElement('table');
@@ -29,7 +64,7 @@ function createNewTable() {
             cell.appendChild(cellSpan);
 
             if (cellSpan.textContent === "Color") {
-                cell.className = 'cell color-cell';
+                cell.className = 'cell color-cell position-' + i + "-" + j;
                 cellSpan.className = 'spanColor';
             } else {
                 cell.className = 'cell img-cell';
@@ -47,8 +82,10 @@ function fillImageInfo(el) {
         let imageElement = document.createElement('img');
         el.appendChild(imageElement);
         imageElement.alt = prompt('Association?');
-        imageElement.src = prompt('Download the picture. Enter link:');
+        imageElement.src = prompt('Enter link to the picture:');
+        saveCell();
     };
+
 }
 
 function clearTextAndInsertColorInput(colorCell) {
@@ -60,6 +97,7 @@ function clearTextAndInsertColorInput(colorCell) {
             colorCell.appendChild(colorInputElement);
             colorInputElement.className = 'inputColor';
             colorInputElement.type = 'color';
+            saveCell();
         }
     };
 }
